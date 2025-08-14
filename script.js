@@ -15,7 +15,11 @@ function multiply (a, b) {
 } 
 
 function divide (a, b) {
-    return a / b;
+    if (b == 0) {
+        alert('Cannot divide by 0, which you definitely knew.');
+    } else {
+        return a / b;
+    }
 }
 
 function operate (a, b, operator) {
