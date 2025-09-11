@@ -37,3 +37,13 @@ function operate (a, b, operator) {
             divide(a, b);
     }
 }
+
+const display = document.querySelector('#display');
+const btns = document.querySelector('#buttonContainer');
+
+console.log(display);
+console.log(btns);
+
+btns.addEventListener('click', (event) => {
+display.textContent += event.target.getAttribute('id');
+});
