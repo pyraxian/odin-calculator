@@ -37,3 +37,15 @@ function operate (a, b, operator) {
             divide(a, b);
     }
 }
+
+const display = document.querySelector('#display');
+const buttons = document.querySelector('#buttonContainer');
+
+buttons.addEventListener('click', (event) => {
+    if (!(event.target.getAttribute('id') == 'digitsContainer') && !(event.target.getAttribute('id') == 'operatorsContainer')) {
+        display.textContent += event.target.getAttribute('id');
+    }
+
+    // When the user hits an operator button, save the current number in a variable, save the operator in a 
+    // variable, and set a flag to delete the display the next time a number is entered. 
+});
