@@ -42,8 +42,15 @@ const display = document.querySelector('#display');
 const buttons = document.querySelector('#buttonContainer');
 
 buttons.addEventListener('click', (event) => {
+    let operatorFlag;
+
     if (!(event.target.getAttribute('id') == 'digitsContainer') && !(event.target.getAttribute('id') == 'operatorsContainer')) {
         display.textContent += event.target.getAttribute('id');
+
+        // Check to see if button pressed was an operator
+        if (event.target.parentElement.classList.contains('operators')) {
+            console.log('Operator key pressed');
+        }
     }
 
     // When the user hits an operator button, save the current number in a variable, save the operator in a 
