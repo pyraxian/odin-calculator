@@ -2,6 +2,11 @@ let num1;
 let num2; 
 let operator;
 
+const display = document.querySelector('#display');
+const buttons = document.querySelector('#buttonContainer');
+
+let operatorFlag = false;
+
 function add (a, b) {
     return a + b;
 }
@@ -38,19 +43,27 @@ function operate (a, b, operator) {
     }
 }
 
-const display = document.querySelector('#display');
-const buttons = document.querySelector('#buttonContainer');
+function clear() {
+    num1 = null;
+    num2 = null;
+    operator = null;
+    operatorFlag = false;
+    display.textContent = '';
+}
+
+
 
 buttons.addEventListener('click', (event) => {
-    let operatorFlag;
 
     if (!(event.target.getAttribute('id') == 'digitsContainer') && !(event.target.getAttribute('id') == 'operatorsContainer')) {
         display.textContent += event.target.getAttribute('id');
 
         // Check to see if button pressed was an operator
         if (event.target.parentElement.classList.contains('operators')) {
-            console.log('Operator key pressed');
-        }
+            // Save current display in a variable as a number
+            // Save operator in a variable
+            // Set operator flag to true
+        }     
     }
 
     // When the user hits an operator button, save the current number in a variable, save the operator in a 
