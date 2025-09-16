@@ -53,7 +53,6 @@ function clear() {
 }
 
 buttons.addEventListener('click', (event) => {
-
     if (!(event.target.getAttribute('id') == 'digitsContainer') && !(event.target.getAttribute('id') == 'operatorsContainer')) {
         if (event.target.parentElement.classList.contains('operators')) { // Button pressed was an operator
             if (!operatorFlag) { // An operator has not been pressed before 
@@ -63,20 +62,18 @@ buttons.addEventListener('click', (event) => {
                     operatorFlag = true;
                     operator = event.target.getAttribute('id');
                     num1 = Number(display.textContent).toFixed(2);
-                }
-                 
+                } 
             } else { // An operator has previously been pressed
                 num2 = Number(display.textContent).toFixed(2);
                 console.log(operate(num1, num2, operator));
                 num1 = operate(num1, num2, operator);
                 display.textContent = num1;
-
             }
             deleteDisplayFlag = true; // Indicates we need to delete the display the next time a number key is pressed
         } else { // Button pressed was a number
-            if (deleteDisplayFlag) {
+            if (deleteDisplayFlag) { 
                 display.textContent = '';
-                deleteDisplayFlag = false;
+                deleteDisplayFlag = false; 
             }
             display.textContent += event.target.getAttribute('id');
         }
@@ -85,7 +82,4 @@ buttons.addEventListener('click', (event) => {
         console.log(`operator: ${operator}`);
         console.log('----');
     }
-
-    // When the user hits an operator button, save the current number in a variable, save the operator in a 
-    // variable, and set a flag to delete the display the next time a number is entered. 
 });
