@@ -55,12 +55,28 @@ buttons.addEventListener('click', (event) => {
 
     if (!(event.target.getAttribute('id') == 'digitsContainer') && !(event.target.getAttribute('id') == 'operatorsContainer')) {
         if (event.target.parentElement.classList.contains('operators')) { // Button pressed was an operator
-            // Save current display in a variable as a number
-            // Save operator in a variable
-            // Set operator flag to true
-        } else {
+            if (!operatorFlag) { // An operator has not been pressed before 
+                if (event.target.getAttribute('id') == '=') {
+                    alert('= was pressed without two operands.')
+                } else {
+                    operatorFlag = true;
+                    operator = event.target.getAttribute('id');
+                    num1 = Number(display.textContent).toFixed(2);
+                }
+                 
+            } else { // An operator has previously been pressed
+                num2 = Number(display.textContent).toFixed(2);
+                num1 = operate(num1, num2, operator);
+                display.textContent = num1;
+
+            }
+        } else { // Button pressed was a number
             display.textContent += event.target.getAttribute('id');
-        }  
+        }
+        console.log(`num1: ${num1}`);
+        console.log(`num2: ${num2}`);
+        console.log(`operator: ${operator}`);
+        console.log('----');
     }
 
     // When the user hits an operator button, save the current number in a variable, save the operator in a 
