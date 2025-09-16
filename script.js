@@ -3,7 +3,8 @@ let num2;
 let operator;
 
 const display = document.querySelector('#display');
-const buttons = document.querySelector('#buttonContainer');
+const digitButtons = document.querySelector('#digitsContainer');
+const operatorButtons = document.querySelector('#operatorsContainer');
 
 let operatorFlag = false;
 let deleteDisplayFlag = false;
@@ -52,34 +53,36 @@ function clear() {
     display.textContent = '';
 }
 
-buttons.addEventListener('click', (event) => {
+operatorButtons.addEventListener('click', (event) => {
     if (!(event.target.getAttribute('id') == 'digitsContainer') && !(event.target.getAttribute('id') == 'operatorsContainer')) {
-        if (event.target.parentElement.classList.contains('operators')) { // Button pressed was an operator
-            if (!operatorFlag) { // An operator has not been pressed before 
-                if (event.target.getAttribute('id') == '=') {
-                    alert('= was pressed without two operands.')
-                } else {
-                    operatorFlag = true;
-                    operator = event.target.getAttribute('id');
-                    num1 = Number(display.textContent).toFixed(2);
-                } 
-            } else { // An operator has previously been pressed
-                num2 = Number(display.textContent).toFixed(2);
-                console.log(operate(num1, num2, operator));
-                num1 = operate(num1, num2, operator);
-                display.textContent = num1;
-            }
-            deleteDisplayFlag = true; // Indicates we need to delete the display the next time a number key is pressed
-        } else { // Button pressed was a number
-            if (deleteDisplayFlag) { 
-                display.textContent = '';
-                deleteDisplayFlag = false; 
-            }
-            display.textContent += event.target.getAttribute('id');
+        if (!operatorFlag) { // An operator has not been pressed before 
+            if (event.target.getAttribute('id') == '=') {
+                alert('= was pressed without two operands.')
+            } else {
+                operatorFlag = true;
+                operator = event.target.getAttribute('id');
+                num1 = Number(display.textContent).toFixed(2);
+            } 
+        } else { // An operator has previously been pressed
+            num2 = Number(display.textContent).toFixed(2);
+            console.log(operate(num1, num2, operator));
+            num1 = operate(num1, num2, operator);
+            display.textContent = num1;
         }
-        console.log(`num1: ${num1}`);
-        console.log(`num2: ${num2}`);
-        console.log(`operator: ${operator}`);
-        console.log('----');
+        deleteDisplayFlag = true; // Indicates we need to delete the display the next time a number key is pressed
+    console.log(`num1: ${num1}`);
+    console.log(`num2: ${num2}`);
+    console.log(`operator: ${operator}`);
+    console.log('----');    
     }
 });
+
+digitButtons.addEventListener('click', (event) => {
+    if (deleteDisplayFlag) { 
+        display.textContent = '';
+        deleteDisplayFlag = false; 
+    }
+    display.textContent += event.target.getAttribute('id');
+});
+
+// Would having two listeners help the logic? One for operators, and one for digits?
