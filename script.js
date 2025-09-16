@@ -32,16 +32,13 @@ function divide (a, b) {
 function operate (a, b, operator) {
     switch (operator) {
         case '+':
-            add(a, b);
-            break;
+            return add(a, b);
         case '-':
-            subtract(a, b);
-            break;
+            return subtract(a, b);
         case '*':
-            multiply(a, b);
-            break;
+            return multiply(a, b);
         case '/':
-            divide(a, b);
+            return divide(a, b);
     }
 }
 
@@ -55,19 +52,27 @@ function clear() {
 
 operatorButtons.addEventListener('click', (event) => {
     if (!(event.target.getAttribute('id') == 'digitsContainer') && !(event.target.getAttribute('id') == 'operatorsContainer')) {
-        if (!operatorFlag) { // An operator has not been pressed before 
-            if (event.target.getAttribute('id') == '=') {
-                alert('= was pressed without two operands.')
-            } else {
-                operatorFlag = true;
-                operator = event.target.getAttribute('id');
-                num1 = Number(display.textContent).toFixed(2);
-            } 
-        } else { // An operator has previously been pressed
+        // if (!operatorFlag) { // An operator has not been pressed before 
+        //     if (event.target.getAttribute('id') == '=') {
+        //         alert('= was pressed without two operands.')
+        //     } else {
+        //         operatorFlag = true;
+        //         operator = event.target.getAttribute('id');
+        //         num1 = Number(display.textContent).toFixed(2);
+        //     } 
+        // } else { // An operator has previously been pressed
+        //     num2 = Number(display.textContent).toFixed(2);
+        //     // console.log(operate(num1, num2, operator));
+        //     num1 = operate(num1, num2, operator);
+        //     display.textContent = num1;
+        // }
+        if (event.target.getAttribute('id') == '=') {
             num2 = Number(display.textContent).toFixed(2);
-            console.log(operate(num1, num2, operator));
             num1 = operate(num1, num2, operator);
             display.textContent = num1;
+        } else {
+            operator = event.target.getAttribute('id');
+            num1 = Number(display.textContent).toFixed(2);
         }
         deleteDisplayFlag = true; // Indicates we need to delete the display the next time a number key is pressed
     console.log(`num1: ${num1}`);
@@ -84,5 +89,3 @@ digitButtons.addEventListener('click', (event) => {
     }
     display.textContent += event.target.getAttribute('id');
 });
-
-// Would having two listeners help the logic? One for operators, and one for digits?
