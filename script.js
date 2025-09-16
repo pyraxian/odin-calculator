@@ -51,19 +51,16 @@ function clear() {
     display.textContent = '';
 }
 
-
-
 buttons.addEventListener('click', (event) => {
 
     if (!(event.target.getAttribute('id') == 'digitsContainer') && !(event.target.getAttribute('id') == 'operatorsContainer')) {
-        display.textContent += event.target.getAttribute('id');
-
-        // Check to see if button pressed was an operator
-        if (event.target.parentElement.classList.contains('operators')) {
+        if (event.target.parentElement.classList.contains('operators')) { // Button pressed was an operator
             // Save current display in a variable as a number
             // Save operator in a variable
             // Set operator flag to true
-        }     
+        } else {
+            display.textContent += event.target.getAttribute('id');
+        }  
     }
 
     // When the user hits an operator button, save the current number in a variable, save the operator in a 
