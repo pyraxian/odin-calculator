@@ -6,6 +6,7 @@ const display = document.querySelector('#display');
 const buttons = document.querySelector('#buttonContainer');
 
 let operatorFlag = false;
+let deleteDisplayFlag = false;
 
 function add (a, b) {
     return a + b;
@@ -66,11 +67,17 @@ buttons.addEventListener('click', (event) => {
                  
             } else { // An operator has previously been pressed
                 num2 = Number(display.textContent).toFixed(2);
+                console.log(operate(num1, num2, operator));
                 num1 = operate(num1, num2, operator);
                 display.textContent = num1;
 
             }
+            deleteDisplayFlag = true; // Indicates we need to delete the display the next time a number key is pressed
         } else { // Button pressed was a number
+            if (deleteDisplayFlag) {
+                display.textContent = '';
+                deleteDisplayFlag = false;
+            }
             display.textContent += event.target.getAttribute('id');
         }
         console.log(`num1: ${num1}`);
