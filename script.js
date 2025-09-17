@@ -68,14 +68,15 @@ operatorButtons.addEventListener('click', (event) => {
         //     display.textContent = num1;
         // }
         if (event.target.getAttribute('id') == '=') {
-            num2 = Number(display.textContent).toFixed(2);
+            num2 = parseFloat(Number(display.textContent).toFixed(2));
             num1 = operate(num1, num2, operator);
             display.textContent = num1;
         } else {
             operator = event.target.getAttribute('id');
-            num1 = Number(display.textContent).toFixed(2);
+            num1 = parseFloat(Number(display.textContent).toFixed(2));
         }
         deleteDisplayFlag = true; // Indicates we need to delete the display the next time a number key is pressed   
+        // printLog();
     }
 });
 
@@ -85,6 +86,7 @@ digitButtons.addEventListener('click', (event) => {
         deleteDisplayFlag = false; 
     }
     display.textContent += event.target.getAttribute('id');
+    // printLog();
 });
 
 clearButton.addEventListener('click', clear);
