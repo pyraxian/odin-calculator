@@ -1,0 +1,9 @@
+#display {
+    background-color: lightgrey;
+    border: 1px solid black;
+    margin: 10px;
+    padding-right: 2px;
+    height: 20px;
+    width: 200px;
+    text-align: right;
+}
