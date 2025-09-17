@@ -5,6 +5,7 @@ let operator;
 const display = document.querySelector('#display');
 const digitButtons = document.querySelector('#digitsContainer');
 const operatorButtons = document.querySelector('#operatorsContainer');
+const clearButton = document.querySelector('#clear');
 
 let operatorFlag = false;
 let deleteDisplayFlag = false;
@@ -43,11 +44,11 @@ function operate (a, b, operator) {
 }
 
 function clear() {
-    num1 = null;
-    num2 = null;
-    operator = null;
+    num1 = undefined;
+    num2 = undefined;
+    operator = undefined;
     operatorFlag = false;
-    display.textContent = '';
+    display.textContent = ''; 
 }
 
 operatorButtons.addEventListener('click', (event) => {
@@ -74,11 +75,7 @@ operatorButtons.addEventListener('click', (event) => {
             operator = event.target.getAttribute('id');
             num1 = Number(display.textContent).toFixed(2);
         }
-        deleteDisplayFlag = true; // Indicates we need to delete the display the next time a number key is pressed
-    console.log(`num1: ${num1}`);
-    console.log(`num2: ${num2}`);
-    console.log(`operator: ${operator}`);
-    console.log('----');    
+        deleteDisplayFlag = true; // Indicates we need to delete the display the next time a number key is pressed   
     }
 });
 
@@ -89,3 +86,10 @@ digitButtons.addEventListener('click', (event) => {
     }
     display.textContent += event.target.getAttribute('id');
 });
+
+clearButton.addEventListener('click', clear);
+
+// console.log(`num1: ${num1}`);
+// console.log(`num2: ${num2}`);
+// console.log(`operator: ${operator}`);
+// console.log('----'); 
