@@ -11,22 +11,22 @@ let operatorFlag = false;
 let deleteDisplayFlag = false;
 
 function add (a, b) {
-    return a + b;
+    return Number(a + b);
 }
 
 function subtract (a, b) {
-    return a - b;
+    return Number(a - b);
 }
 
 function multiply (a, b) {
-    return a * b;
+    return Number(a * b);
 } 
 
 function divide (a, b) {
     if (b == 0) {
         alert('Cannot divide by 0, which you definitely knew.');
     } else {
-        return a / b;
+        return Number(a / b);
     }
 }
 
@@ -89,7 +89,9 @@ digitButtons.addEventListener('click', (event) => {
 
 clearButton.addEventListener('click', clear);
 
-// console.log(`num1: ${num1}`);
-// console.log(`num2: ${num2}`);
-// console.log(`operator: ${operator}`);
-// console.log('----'); 
+function printLog() {
+    console.log(`num1: ${num1} and is a ${typeof num1}`);
+    console.log(`num2: ${num2} and is a ${typeof num2}`);
+    console.log(`operator: ${operator}`);
+    console.log('----'); 
+}
