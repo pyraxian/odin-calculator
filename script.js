@@ -12,22 +12,22 @@ let deleteDisplayFlag = false;
 let decimalFlag = false;
 
 function add (a, b) {
-    return Number(a + b);
+    return parseFloat(a + b).toFixed(2);
 }
 
 function subtract (a, b) {
-    return Number(a - b);
+    return parseFloat(a - b).toFixed(2);
 }
 
 function multiply (a, b) {
-    return Number(a * b);
+    return parseFloat(a * b).toFixed(2);
 } 
 
 function divide (a, b) {
     if (b == 0) {
         alert('Cannot divide by 0, which you definitely knew.');
     } else {
-        return Number(a / b);
+        return parseFloat(a / b).toFixed(2);
     }
 }
 
@@ -49,6 +49,7 @@ function clear() {
     num2 = undefined;
     operator = undefined;
     operatorFlag = false;
+    decimalFlag = false;
     display.textContent = ''; 
 }
 
@@ -80,7 +81,7 @@ digitButtons.addEventListener('click', (event) => {
             decimalFlag = false;
         }
         if (event.target.getAttribute('id') == '.') {
-            if (!decimalFlag) {
+            if (!decimalFlag) { 
                 decimalFlag = true;
                 display.textContent += event.target.getAttribute('id');
             }
