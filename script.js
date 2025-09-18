@@ -62,13 +62,12 @@ operatorButtons.addEventListener('click', (event) => {
             if (event.target.getAttribute('id') == '=') {
                 alert('Equals pressed without two operands');
             } else {
-                operatorFlag = true;
+                operatorFlag = true; // Indicates an operator has been pressed, and the next operator press should evaluate the current number pair
                 operator = event.target.getAttribute('id');
                 num1 = parseFloat(Number(display.textContent).toFixed(2));
             }
         }
         deleteDisplayFlag = true; // Indicates we need to delete the display the next time a number key is pressed   
-        // printLog();
     }
 });
 
@@ -79,15 +78,7 @@ digitButtons.addEventListener('click', (event) => {
             deleteDisplayFlag = false; 
         }
         display.textContent += event.target.getAttribute('id');
-        // printLog();
     }
 });
 
 clearButton.addEventListener('click', clear);
-
-function printLog() {
-    console.log(`num1: ${num1} and is a ${typeof num1}`);
-    console.log(`num2: ${num2} and is a ${typeof num2}`);
-    console.log(`operator: ${operator}`);
-    console.log('----'); 
-}
