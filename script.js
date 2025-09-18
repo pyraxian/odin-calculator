@@ -52,7 +52,7 @@ function clear() {
 }
 
 operatorButtons.addEventListener('click', (event) => {
-    if (!(event.target.getAttribute('id') == 'digitsContainer') && !(event.target.getAttribute('id') == 'operatorsContainer')) {
+    if (!(event.target.getAttribute('id') == 'operatorsContainer')) {
         if (operatorFlag) {
             num2 = parseFloat(Number(display.textContent).toFixed(2));
             num1 = operate(num1, num2, operator);
@@ -73,12 +73,14 @@ operatorButtons.addEventListener('click', (event) => {
 });
 
 digitButtons.addEventListener('click', (event) => {
-    if (deleteDisplayFlag) { 
-        display.textContent = '';
-        deleteDisplayFlag = false; 
+    if (!(event.target.getAttribute('id') == 'digitsContainer')) {
+        if (deleteDisplayFlag) { 
+            display.textContent = '';
+            deleteDisplayFlag = false; 
+        }
+        display.textContent += event.target.getAttribute('id');
+        // printLog();
     }
-    display.textContent += event.target.getAttribute('id');
-    // printLog();
 });
 
 clearButton.addEventListener('click', clear);
