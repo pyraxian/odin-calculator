@@ -5,7 +5,7 @@ let operator;
 const display = document.querySelector('#display');
 const digitButtons = document.querySelector('#digitsContainer');
 const operatorButtons = document.querySelector('#operatorsContainer');
-const clearButton = document.querySelector('#clear');
+const utilityButton = document.querySelector('#utilityContainer');
 
 let operatorFlag = false;
 let deleteDisplayFlag = false;
@@ -53,6 +53,10 @@ function clear() {
     display.textContent = ''; 
 }
 
+function backspace() {
+    console.log('Backspace function called');
+}
+
 operatorButtons.addEventListener('click', (event) => {
     if (!(event.target.getAttribute('id') == 'operatorsContainer')) {
         if (operatorFlag) {
@@ -91,4 +95,10 @@ digitButtons.addEventListener('click', (event) => {
     }
 });
 
-clearButton.addEventListener('click', clear);
+utilityButton.addEventListener('click', (event) => {
+    if (event.target.getAttribute('id') == 'clear') {
+        clear();
+    } else if (event.target.getAttribute('id') == 'backspace') {
+        backspace();
+    }
+});
