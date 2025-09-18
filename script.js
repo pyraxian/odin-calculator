@@ -54,7 +54,10 @@ function clear() {
 }
 
 function backspace() {
-    console.log('Backspace function called');
+    let displayLength = display.textContent.length;
+    let lastKey = display.textContent[displayLength - 1];
+    display.textContent = display.textContent.slice(0, displayLength - 1);
+    if (lastKey == '.') decimalFlag = false;
 }
 
 operatorButtons.addEventListener('click', (event) => {
