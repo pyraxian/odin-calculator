@@ -53,27 +53,19 @@ function clear() {
 
 operatorButtons.addEventListener('click', (event) => {
     if (!(event.target.getAttribute('id') == 'digitsContainer') && !(event.target.getAttribute('id') == 'operatorsContainer')) {
-        // if (!operatorFlag) { // An operator has not been pressed before 
-        //     if (event.target.getAttribute('id') == '=') {
-        //         alert('= was pressed without two operands.')
-        //     } else {
-        //         operatorFlag = true;
-        //         operator = event.target.getAttribute('id');
-        //         num1 = Number(display.textContent).toFixed(2);
-        //     } 
-        // } else { // An operator has previously been pressed
-        //     num2 = Number(display.textContent).toFixed(2);
-        //     // console.log(operate(num1, num2, operator));
-        //     num1 = operate(num1, num2, operator);
-        //     display.textContent = num1;
-        // }
-        if (event.target.getAttribute('id') == '=') {
+        if (operatorFlag) {
             num2 = parseFloat(Number(display.textContent).toFixed(2));
             num1 = operate(num1, num2, operator);
             display.textContent = num1;
+            if (event.target.getAttribute('id') != '=') operator = event.target.getAttribute('id');
         } else {
-            operator = event.target.getAttribute('id');
-            num1 = parseFloat(Number(display.textContent).toFixed(2));
+            if (event.target.getAttribute('id') == '=') {
+                alert('Equals pressed without two operands');
+            } else {
+                operatorFlag = true;
+                operator = event.target.getAttribute('id');
+                num1 = parseFloat(Number(display.textContent).toFixed(2));
+            }
         }
         deleteDisplayFlag = true; // Indicates we need to delete the display the next time a number key is pressed   
         // printLog();
