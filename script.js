@@ -9,6 +9,7 @@ const clearButton = document.querySelector('#clear');
 
 let operatorFlag = false;
 let deleteDisplayFlag = false;
+let decimalFlag = false;
 
 function add (a, b) {
     return Number(a + b);
@@ -76,8 +77,16 @@ digitButtons.addEventListener('click', (event) => {
         if (deleteDisplayFlag) { 
             display.textContent = '';
             deleteDisplayFlag = false; 
+            decimalFlag = false;
         }
-        display.textContent += event.target.getAttribute('id');
+        if (event.target.getAttribute('id') == '.') {
+            if (!decimalFlag) {
+                decimalFlag = true;
+                display.textContent += event.target.getAttribute('id');
+            }
+        } else {
+            display.textContent += event.target.getAttribute('id');
+        }
     }
 });
 
